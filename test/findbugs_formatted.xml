@@ -1,0 +1,409 @@
+<?xml version="1.0"?>
+<BugCollection timestamp="1372242322000" analysisTimestamp="1372242332904" sequence="0" release="" version="2.0.0">
+  <Project projectName="sdk-example">
+    <Jar>/home/dheart/workspace/sdk-examples/target/classes</Jar>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/mojo/findbugs-maven-plugin/2.4.0/findbugs-maven-plugin-2.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/gmaven/gmaven-mojo/1.3/gmaven-mojo-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/gmaven/runtime/gmaven-runtime-api/1.3/gmaven-runtime-api-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/gmaven/feature/gmaven-feature-api/1.3/gmaven-feature-api-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/gmaven/runtime/gmaven-runtime-1.5/1.3/gmaven-runtime-1.5-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/gmaven/feature/gmaven-feature-support/1.3/gmaven-feature-support-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/groovy/groovy-all-minimal/1.5.8/groovy-all-minimal-1.5.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/ant/ant/1.7.1/ant-1.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/ant/ant-launcher/1.7.1/ant-launcher-1.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/jline/jline/0.9.94/jline-0.9.94.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/plexus/plexus-interpolation/1.1/plexus-interpolation-1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/gmaven/gmaven-plugin/1.3/gmaven-plugin-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/gmaven/runtime/gmaven-runtime-loader/1.3/gmaven-runtime-loader-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/gmaven/runtime/gmaven-runtime-support/1.3/gmaven-runtime-support-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/sonatype/gshell/gshell-io/2.0/gshell-io-2.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/com/thoughtworks/qdox/qdox/1.10/qdox-1.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/slf4j/slf4j-api/1.5.10/slf4j-api-1.5.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/sonatype/gossip/gossip/1.2/gossip-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/reporting/maven-reporting-impl/2.1/maven-reporting-impl-2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-digester/commons-digester/1.6/commons-digester-1.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/oro/oro/2.0.8/oro-2.0.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/groovy/groovy-all/1.7.4/groovy-all-1.7.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/reporting/maven-reporting-api/3.0/maven-reporting-api-3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/doxia/doxia-core/1.1.3/doxia-core-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/doxia/doxia-logging-api/1.1.3/doxia-logging-api-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-codec/commons-codec/1.2/commons-codec-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/doxia/doxia-sink-api/1.1.3/doxia-sink-api-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/doxia/doxia-decoration-model/1.1.3/doxia-decoration-model-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/doxia/doxia-site-renderer/1.1.3/doxia-site-renderer-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/doxia/doxia-module-xhtml/1.1.3/doxia-module-xhtml-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/doxia/doxia-module-fml/1.1.3/doxia-module-fml-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/plexus/plexus-i18n/1.0-beta-7/plexus-i18n-1.0-beta-7.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/plexus/plexus-velocity/1.1.7/plexus-velocity-1.1.7.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/velocity/velocity/1.5/velocity-1.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-collections/commons-collections/3.2/commons-collections-3.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/apache/maven/shared/maven-doxia-tools/1.2.1/maven-doxia-tools-1.2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/commons-io/commons-io/1.4/commons-io-1.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/com/google/code/findbugs/findbugs-ant/2.0.0/findbugs-ant-2.0.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/com/google/code/findbugs/findbugs/2.0.0/findbugs-2.0.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/com/google/code/findbugs/bcel/2.0.0/bcel-2.0.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/com/google/code/findbugs/jsr305/2.0.0/jsr305-2.0.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/com/google/code/findbugs/jFormatString/2.0.0/jFormatString-2.0.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/com/google/code/findbugs/annotations/2.0.0/annotations-2.0.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/jaxen/jaxen/1.1.1/jaxen-1.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/jdom/jdom/1.0/jdom-1.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/xom/xom/1.0/xom-1.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/xalan/xalan/2.6.0/xalan-2.6.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/asm/asm/3.3/asm-3.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/asm/asm-tree/3.3/asm-tree-3.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/asm/asm-commons/3.3/asm-commons-3.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/jgoodies/plastic/1.2.0/plastic-1.2.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/plexus/plexus-resources/1.0-alpha-4/plexus-resources-1.0-alpha-4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/dheart/.m2/repository/org/codehaus/plexus/plexus-utils/1.5.1/plexus-utils-1.5.1.jar</AuxClasspathEntry>
+    <SrcDir>/home/dheart/workspace/sdk-examples/src</SrcDir>
+    <WrkDir>/home/dheart/workspace/sdk-examples/target</WrkDir>
+  </Project>
+  <BugInstance category="MT_CORRECTNESS" instanceHash="baf73db6054e4f28bbf5689f8904ac1" rank="4" instanceOccurrenceNum="0" priority="1" abbrev="DL" type="DL_SYNCHRONIZATION_ON_BOOLEAN" instanceOccurrenceMax="0">
+    <ShortMessage>Synchronization on Boolean</ShortMessage>
+    <LongMessage>Synchronization on Boolean in locking.ReusedObjSync.synchronizeOnBoolean()</LongMessage>
+    <Class classname="locking.ReusedObjSync" primary="true">
+      <SourceLine start="3" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="29">
+        <Message>At ReusedObjSync.java:[lines 3-29]</Message>
+      </SourceLine>
+      <Message>In class locking.ReusedObjSync</Message>
+    </Class>
+    <Method isStatic="false" classname="locking.ReusedObjSync" name="synchronizeOnBoolean" primary="true" signature="()V">
+      <SourceLine endBytecode="110" startBytecode="0" start="11" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="14"/>
+      <Message>In method locking.ReusedObjSync.synchronizeOnBoolean()</Message>
+    </Method>
+    <Field isStatic="false" classname="locking.ReusedObjSync" name="bool" primary="true" signature="Ljava/lang/Boolean;">
+      <SourceLine classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java">
+        <Message>In ReusedObjSync.java</Message>
+      </SourceLine>
+      <Message>Field locking.ReusedObjSync.bool</Message>
+    </Field>
+    <SourceLine endBytecode="6" startBytecode="6" start="11" classname="locking.ReusedObjSync" primary="true" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="11">
+      <Message>At ReusedObjSync.java:[line 11]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance category="MT_CORRECTNESS" instanceHash="9fa4fd0d0955ede9d22023c807465693" rank="14" instanceOccurrenceNum="0" priority="2" abbrev="DL" type="DL_SYNCHRONIZATION_ON_SHARED_CONSTANT" instanceOccurrenceMax="0">
+    <ShortMessage>Synchronization on interned String </ShortMessage>
+    <LongMessage>Synchronization on interned String in locking.ReusedObjSync.synchronizeOnStringLiteral()</LongMessage>
+    <Class classname="locking.ReusedObjSync" primary="true">
+      <SourceLine start="3" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="29">
+        <Message>At ReusedObjSync.java:[lines 3-29]</Message>
+      </SourceLine>
+      <Message>In class locking.ReusedObjSync</Message>
+    </Class>
+    <Method isStatic="false" classname="locking.ReusedObjSync" name="synchronizeOnStringLiteral" primary="true" signature="()V">
+      <SourceLine endBytecode="108" startBytecode="0" start="18" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="21"/>
+      <Message>In method locking.ReusedObjSync.synchronizeOnStringLiteral()</Message>
+    </Method>
+    <String value="test" role="STRING_CONSTANT">
+      <Message>String constant "test"</Message>
+    </String>
+    <SourceLine endBytecode="4" startBytecode="4" start="18" classname="locking.ReusedObjSync" primary="true" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="18">
+      <Message>At ReusedObjSync.java:[line 18]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance category="MT_CORRECTNESS" instanceHash="8fb8b0bffecd1673b27394bb90c61926" rank="14" instanceOccurrenceNum="0" priority="2" abbrev="ESync" type="ESync_EMPTY_SYNC" instanceOccurrenceMax="0">
+    <ShortMessage>Empty synchronized block</ShortMessage>
+    <LongMessage>Empty synchronized block in locking.ReusedObjSync.synchronizeOnBoolean()</LongMessage>
+    <Class classname="locking.ReusedObjSync" primary="true">
+      <SourceLine start="3" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="29">
+        <Message>At ReusedObjSync.java:[lines 3-29]</Message>
+      </SourceLine>
+      <Message>In class locking.ReusedObjSync</Message>
+    </Class>
+    <Method isStatic="false" classname="locking.ReusedObjSync" name="synchronizeOnBoolean" primary="true" signature="()V">
+      <SourceLine endBytecode="110" startBytecode="0" start="11" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="14"/>
+      <Message>In method locking.ReusedObjSync.synchronizeOnBoolean()</Message>
+    </Method>
+    <SourceLine endBytecode="8" startBytecode="8" start="13" classname="locking.ReusedObjSync" primary="true" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="13">
+      <Message>At ReusedObjSync.java:[line 13]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance category="MT_CORRECTNESS" instanceHash="34007a6d8ce1f89180862f937d4a8d3" rank="14" instanceOccurrenceNum="0" priority="2" abbrev="ESync" type="ESync_EMPTY_SYNC" instanceOccurrenceMax="0">
+    <ShortMessage>Empty synchronized block</ShortMessage>
+    <LongMessage>Empty synchronized block in locking.ReusedObjSync.synchronizeOnStringLiteral()</LongMessage>
+    <Class classname="locking.ReusedObjSync" primary="true">
+      <SourceLine start="3" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="29">
+        <Message>At ReusedObjSync.java:[lines 3-29]</Message>
+      </SourceLine>
+      <Message>In class locking.ReusedObjSync</Message>
+    </Class>
+    <Method isStatic="false" classname="locking.ReusedObjSync" name="synchronizeOnStringLiteral" primary="true" signature="()V">
+      <SourceLine endBytecode="108" startBytecode="0" start="18" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="21"/>
+      <Message>In method locking.ReusedObjSync.synchronizeOnStringLiteral()</Message>
+    </Method>
+    <SourceLine endBytecode="6" startBytecode="6" start="20" classname="locking.ReusedObjSync" primary="true" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="20">
+      <Message>At ReusedObjSync.java:[line 20]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance category="MT_CORRECTNESS" instanceHash="560e0471bbe9c3cdd2ba69ab75b9786a" rank="14" instanceOccurrenceNum="0" priority="2" abbrev="ESync" type="ESync_EMPTY_SYNC" instanceOccurrenceMax="0">
+    <ShortMessage>Empty synchronized block</ShortMessage>
+    <LongMessage>Empty synchronized block in locking.ReusedObjSync.synchronizeOnStringOrInteger()</LongMessage>
+    <Class classname="locking.ReusedObjSync" primary="true">
+      <SourceLine start="3" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="29">
+        <Message>At ReusedObjSync.java:[lines 3-29]</Message>
+      </SourceLine>
+      <Message>In class locking.ReusedObjSync</Message>
+    </Class>
+    <Method isStatic="false" classname="locking.ReusedObjSync" name="synchronizeOnStringOrInteger" primary="true" signature="()V">
+      <SourceLine endBytecode="150" startBytecode="0" start="24" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="29"/>
+      <Message>In method locking.ReusedObjSync.synchronizeOnStringOrInteger()</Message>
+    </Method>
+    <SourceLine endBytecode="26" startBytecode="26" start="28" classname="locking.ReusedObjSync" primary="true" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="28">
+      <Message>At ReusedObjSync.java:[line 28]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance category="PERFORMANCE" instanceHash="faea3f7ae388021175c7c8ea06759396" rank="18" instanceOccurrenceNum="0" priority="2" abbrev="SS" type="SS_SHOULD_BE_STATIC" instanceOccurrenceMax="0">
+    <ShortMessage>Unread field: should this field be static?</ShortMessage>
+    <LongMessage>Unread field: locking.ReusedObjSync.string; should this field be static?</LongMessage>
+    <Class classname="locking.ReusedObjSync" primary="true">
+      <SourceLine start="3" classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="29">
+        <Message>At ReusedObjSync.java:[lines 3-29]</Message>
+      </SourceLine>
+      <Message>In class locking.ReusedObjSync</Message>
+    </Class>
+    <Field isStatic="false" classname="locking.ReusedObjSync" name="string" primary="true" signature="Ljava/lang/String;">
+      <SourceLine classname="locking.ReusedObjSync" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java">
+        <Message>In ReusedObjSync.java</Message>
+      </SourceLine>
+      <Message>Field locking.ReusedObjSync.string</Message>
+    </Field>
+    <SourceLine endBytecode="15" startBytecode="15" start="7" classname="locking.ReusedObjSync" primary="true" sourcepath="locking/ReusedObjSync.java" sourcefile="ReusedObjSync.java" end="7">
+      <Message>At ReusedObjSync.java:[line 7]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugInstance category="MT_CORRECTNESS" instanceHash="687e3b7f502628c21e1cc06ebd58c8e5" rank="6" instanceOccurrenceNum="0" priority="2" abbrev="ML" type="ML_SYNC_ON_FIELD_TO_GUARD_CHANGING_THAT_FIELD" instanceOccurrenceMax="0">
+    <ShortMessage>Synchronization on field in futile attempt to guard that field</ShortMessage>
+    <LongMessage>Synchronization on SyncFieldWrite.lock in futile attempt to guard it</LongMessage>
+    <Class classname="syncfieldwrite.SyncFieldWrite" primary="true">
+      <SourceLine start="3" classname="syncfieldwrite.SyncFieldWrite" sourcepath="syncfieldwrite/SyncFieldWrite.java" sourcefile="SyncFieldWrite.java" end="12">
+        <Message>At SyncFieldWrite.java:[lines 3-12]</Message>
+      </SourceLine>
+      <Message>In class syncfieldwrite.SyncFieldWrite</Message>
+    </Class>
+    <Method isStatic="false" classname="syncfieldwrite.SyncFieldWrite" name="setLock" primary="true" signature="(Ljava/lang/Object;)V">
+      <SourceLine endBytecode="132" startBytecode="0" start="8" classname="syncfieldwrite.SyncFieldWrite" sourcepath="syncfieldwrite/SyncFieldWrite.java" sourcefile="SyncFieldWrite.java" end="12"/>
+      <Message>In method syncfieldwrite.SyncFieldWrite.setLock(Object)</Message>
+    </Method>
+    <Field isStatic="false" classname="syncfieldwrite.SyncFieldWrite" name="lock" primary="true" signature="Ljava/lang/Object;">
+      <SourceLine classname="syncfieldwrite.SyncFieldWrite" sourcepath="syncfieldwrite/SyncFieldWrite.java" sourcefile="SyncFieldWrite.java">
+        <Message>In SyncFieldWrite.java</Message>
+      </SourceLine>
+      <Message>Field syncfieldwrite.SyncFieldWrite.lock</Message>
+    </Field>
+    <SourceLine endBytecode="9" startBytecode="9" start="10" classname="syncfieldwrite.SyncFieldWrite" primary="true" sourcepath="syncfieldwrite/SyncFieldWrite.java" sourcefile="SyncFieldWrite.java" end="10">
+      <Message>At SyncFieldWrite.java:[line 10]</Message>
+    </SourceLine>
+  </BugInstance>
+  <BugCategory category="PERFORMANCE">
+    <Description>Performance</Description>
+  </BugCategory>
+  <BugCategory category="MT_CORRECTNESS">
+    <Description>Multithreaded correctness</Description>
+  </BugCategory>
+  <BugPattern category="MT_CORRECTNESS" abbrev="DL" type="DL_SYNCHRONIZATION_ON_SHARED_CONSTANT">
+    <ShortDescription>Synchronization on interned String </ShortDescription>
+    <Details>
+
+  &lt;p&gt; The code synchronizes on interned String.
+&lt;pre&gt;
+private static String LOCK = "LOCK";
+...
+  synchronized(LOCK) { ...}
+...
+&lt;/pre&gt;
+&lt;/p&gt;
+&lt;p&gt;Constant Strings are interned and shared across all other classes loaded by the JVM. Thus, this could
+is locking on something that other code might also be locking. This could result in very strange and hard to diagnose
+blocking and deadlock behavior. See &lt;a href="http://www.javalobby.org/java/forums/t96352.html"&gt;http://www.javalobby.org/java/forums/t96352.html&lt;/a&gt; and &lt;a href="http://jira.codehaus.org/browse/JETTY-352"&gt;http://jira.codehaus.org/browse/JETTY-352&lt;/a&gt;.
+&lt;p&gt;See CERT &lt;a href="https://www.securecoding.cert.org/confluence/display/java/CON08-J.+Do+not+synchronize+on+objects+that+may+be+reused"&gt;CON08-J. Do not synchronize on objects that may be reused&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;/p&gt;
+
+    </Details>
+  </BugPattern>
+  <BugPattern category="MT_CORRECTNESS" abbrev="ESync" type="ESync_EMPTY_SYNC" cweid="585">
+    <ShortDescription>Empty synchronized block</ShortDescription>
+    <Details>
+
+  &lt;p&gt; The code contains an empty synchronized block:&lt;/p&gt;
+&lt;pre&gt;
+synchronized() {}
+&lt;/pre&gt;
+&lt;p&gt;Empty synchronized blocks are far more subtle and hard to use correctly
+than most people recognize, and empty synchronized blocks
+are almost never a better solution
+than less contrived solutions.
+&lt;/p&gt;
+
+    </Details>
+  </BugPattern>
+  <BugPattern category="MT_CORRECTNESS" abbrev="ML" type="ML_SYNC_ON_FIELD_TO_GUARD_CHANGING_THAT_FIELD">
+    <ShortDescription>Synchronization on field in futile attempt to guard that field</ShortDescription>
+    <Details>
+
+  &lt;p&gt; This method synchronizes on a field in what appears to be an attempt
+to guard against simultaneous updates to that field. But guarding a field
+gets a lock on the referenced object, not on the field. This may not
+provide the mutual exclusion you need, and other threads might
+be obtaining locks on the referenced objects (for other purposes). An example
+of this pattern would be:
+
+&lt;p&gt;&lt;pre&gt;
+private Long myNtfSeqNbrCounter = new Long(0);
+private Long getNotificationSequenceNumber() {
+     Long result = null;
+     synchronized(myNtfSeqNbrCounter) {
+         result = new Long(myNtfSeqNbrCounter.longValue() + 1);
+         myNtfSeqNbrCounter = new Long(result.longValue());
+     }
+     return result;
+ }
+&lt;/pre&gt;
+
+
+&lt;/p&gt;
+
+    </Details>
+  </BugPattern>
+  <BugPattern category="PERFORMANCE" abbrev="SS" type="SS_SHOULD_BE_STATIC">
+    <ShortDescription>Unread field: should this field be static?</ShortDescription>
+    <Details>
+
+  &lt;p&gt; This class contains an instance final field that
+   is initialized to a compile-time static value.
+   Consider making the field static.&lt;/p&gt;
+
+    </Details>
+  </BugPattern>
+  <BugPattern category="MT_CORRECTNESS" abbrev="DL" type="DL_SYNCHRONIZATION_ON_BOOLEAN">
+    <ShortDescription>Synchronization on Boolean</ShortDescription>
+    <Details>
+      
+  &lt;p&gt; The code synchronizes on a boxed primitive constant, such as an Boolean.
+&lt;pre&gt;
+private static Boolean inited = Boolean.FALSE;
+...
+  synchronized(inited) {
+    if (!inited) {
+       init();
+       inited = Boolean.TRUE;
+       }
+     }
+...
+&lt;/pre&gt;
+&lt;/p&gt;
+&lt;p&gt;Since there normally exist only two Boolean objects, this code could be synchronizing on the same object as other, unrelated code, leading to unresponsiveness
+and possible deadlock&lt;/p&gt;
+&lt;p&gt;See CERT &lt;a href="https://www.securecoding.cert.org/confluence/display/java/CON08-J.+Do+not+synchronize+on+objects+that+may+be+reused"&gt;CON08-J. Do not synchronize on objects that may be reused&lt;/a&gt; for more information.&lt;/p&gt;
+
+    </Details>
+  </BugPattern>
+  <BugCode abbrev="DL">
+    <Description>Unintended contention or possible deadlock due to locking on shared
+    objects</Description>
+  </BugCode>
+  <BugCode abbrev="SS">
+    <Description>Unread field should be static</Description>
+  </BugCode>
+  <BugCode abbrev="ML">
+    <Description>Synchronization on updated field (Mutable Lock)</Description>
+  </BugCode>
+  <BugCode abbrev="ESync">
+    <Description>Empty Synchronized blocks</Description>
+  </BugCode>
+  <Errors errors="0" missingClasses="0"/>
+  <FindBugsSummary alloc_mbytes="455.12" priority_2="6" priority_1="1" gc_seconds="0.12" peak_mbytes="130.46" total_bugs="7" referenced_classes="55" timestamp="Wed, 26 Jun 2013 11:25:22 +0100" total_classes="24" num_packages="8" total_size="269" cpu_seconds="31.52" clock_seconds="16.92" vm_version="23.21-b01">
+    <FileStats path="badcatches/ConcurrentModificationCatch.java" bugCount="0" size="11"/>
+    <FileStats path="callbackaccess/CallbackAccess.java" bugCount="0" size="19"/>
+    <FileStats path="callbackaccess/CallbackCollection.java" bugCount="0" size="24"/>
+    <FileStats path="concurrentcollections/GetCheckPutRatherThanPutIfAbsent.java" bugCount="0" size="13"/>
+    <FileStats path="concurrentcollections/NonAtomicCheckPut.java" bugCount="0" size="9"/>
+    <FileStats path="concurrentcollections/NonAtomicGetCheckPut.java" bugCount="0" size="11"/>
+    <FileStats path="concurrentcollections/SharedNonThreadSafeContent.java" bugCount="0" size="14"/>
+    <FileStats path="concurrentcollections/ThreadSafeCollectionConsistentlyGuarded.java" bugCount="0" size="17"/>
+    <FileStats path="concurrentcollections/UnsafeIteration.java" bugCount="0" size="10"/>
+    <FileStats path="concurrentcollections/UnsafeReplacement.java" bugCount="0" size="15"/>
+    <FileStats path="finalfields/FinalVolatile.java" bugCount="0" size="7"/>
+    <FileStats path="lockedblocking/BlockingQueueDeadlock.java" bugCount="0" size="19"/>
+    <FileStats path="locking/ReusedObjSync.java" bugCount="6" bugHash="631ddd2d2f3eb8ba5f5daa09d892a0dc" size="20"/>
+    <FileStats path="locking/TryLockTest.java" bugCount="0" size="14"/>
+    <FileStats path="shallowlock/InconsistentCollection.java" bugCount="0" size="13"/>
+    <FileStats path="shallowlock/InconsistentSynchronization.java" bugCount="0" size="12"/>
+    <FileStats path="shallowlock/MixedCollection.java" bugCount="0" size="14"/>
+    <FileStats path="shallowlock/ShallowMixed.java" bugCount="0" size="18"/>
+    <FileStats path="syncfieldwrite/SyncFieldWrite.java" bugCount="1" bugHash="f7a83bcb846617da90ebae3aa16d3c9f" size="9"/>
+    <PackageStats total_size="11" package="badcatches" total_bugs="0" total_types="1">
+      <ClassStats sourceFile="ConcurrentModificationCatch.java" bugs="0" class="badcatches.ConcurrentModificationCatch" interface="false" size="11"/>
+    </PackageStats>
+    <PackageStats total_size="43" package="callbackaccess" total_bugs="0" total_types="6">
+      <ClassStats sourceFile="CallbackAccess.java" bugs="0" class="callbackaccess.CallbackAccess" interface="false" size="10"/>
+      <ClassStats sourceFile="CallbackAccess.java" bugs="0" class="callbackaccess.CallbackAccess$1" interface="false" size="1"/>
+      <ClassStats sourceFile="CallbackAccess.java" bugs="0" class="callbackaccess.CallbackAccess$RefreshField" interface="false" size="8"/>
+      <ClassStats sourceFile="CallbackCollection.java" bugs="0" class="callbackaccess.CallbackCollection" interface="false" size="15"/>
+      <ClassStats sourceFile="CallbackCollection.java" bugs="0" class="callbackaccess.CallbackCollection$1" interface="false" size="1"/>
+      <ClassStats sourceFile="CallbackCollection.java" bugs="0" class="callbackaccess.CallbackCollection$AddStuff" interface="false" size="8"/>
+    </PackageStats>
+    <PackageStats total_size="89" package="concurrentcollections" total_bugs="0" total_types="8">
+      <ClassStats sourceFile="GetCheckPutRatherThanPutIfAbsent.java" bugs="0" class="concurrentcollections.GetCheckPutRatherThanPutIfAbsent" interface="false" size="13"/>
+      <ClassStats sourceFile="NonAtomicCheckPut.java" bugs="0" class="concurrentcollections.NonAtomicCheckPut" interface="false" size="9"/>
+      <ClassStats sourceFile="NonAtomicGetCheckPut.java" bugs="0" class="concurrentcollections.NonAtomicGetCheckPut" interface="false" size="11"/>
+      <ClassStats sourceFile="SharedNonThreadSafeContent.java" bugs="0" class="concurrentcollections.SharedNonThreadSafeContent" interface="false" size="14"/>
+      <ClassStats sourceFile="ThreadSafeCollectionConsistentlyGuarded.java" bugs="0" class="concurrentcollections.ThreadSafeCollectionConsistentlyGuarded" interface="false" size="17"/>
+      <ClassStats sourceFile="UnsafeIteration.java" bugs="0" class="concurrentcollections.UnsafeIteration" interface="false" size="10"/>
+      <ClassStats sourceFile="UnsafeReplacement.java" bugs="0" class="concurrentcollections.UnsafeReplacement" interface="false" size="10"/>
+      <ClassStats sourceFile="UnsafeReplacement.java" bugs="0" class="concurrentcollections.UnsafeReplacement$MapProvider" interface="false" size="5"/>
+    </PackageStats>
+    <PackageStats total_size="7" package="finalfields" total_bugs="0" total_types="1">
+      <ClassStats sourceFile="FinalVolatile.java" bugs="0" class="finalfields.FinalVolatile" interface="false" size="7"/>
+    </PackageStats>
+    <PackageStats total_size="19" package="lockedblocking" total_bugs="0" total_types="1">
+      <ClassStats sourceFile="BlockingQueueDeadlock.java" bugs="0" class="lockedblocking.BlockingQueueDeadlock" interface="false" size="19"/>
+    </PackageStats>
+    <PackageStats priority_2="5" priority_1="1" total_size="34" package="locking" total_bugs="6" total_types="2">
+      <ClassStats priority_2="5" priority_1="1" sourceFile="ReusedObjSync.java" bugs="6" class="locking.ReusedObjSync" interface="false" size="20"/>
+      <ClassStats sourceFile="TryLockTest.java" bugs="0" class="locking.TryLockTest" interface="false" size="14"/>
+    </PackageStats>
+    <PackageStats total_size="57" package="shallowlock" total_bugs="0" total_types="4">
+      <ClassStats sourceFile="InconsistentCollection.java" bugs="0" class="shallowlock.InconsistentCollection" interface="false" size="13"/>
+      <ClassStats sourceFile="InconsistentSynchronization.java" bugs="0" class="shallowlock.InconsistentSynchronization" interface="false" size="12"/>
+      <ClassStats sourceFile="MixedCollection.java" bugs="0" class="shallowlock.MixedCollection" interface="false" size="14"/>
+      <ClassStats sourceFile="ShallowMixed.java" bugs="0" class="shallowlock.ShallowMixed" interface="false" size="18"/>
+    </PackageStats>
+    <PackageStats priority_2="1" total_size="9" package="syncfieldwrite" total_bugs="1" total_types="1">
+      <ClassStats priority_2="1" sourceFile="SyncFieldWrite.java" bugs="1" class="syncfieldwrite.SyncFieldWrite" interface="false" size="9"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile avgMicrosecondsPerInvocation="4852" maxMicrosecondsPerInvocation="138352" name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" invocations="436" totalMilliseconds="2115" standardDeviationMircosecondsPerInvocation="11568"/>
+      <ClassProfile avgMicrosecondsPerInvocation="25453" maxMicrosecondsPerInvocation="181250" name="edu.umd.cs.findbugs.detect.FieldItemSummary" invocations="55" totalMilliseconds="1399" standardDeviationMircosecondsPerInvocation="44667"/>
+      <ClassProfile avgMicrosecondsPerInvocation="18179" maxMicrosecondsPerInvocation="115326" name="edu.umd.cs.findbugs.detect.ExplicitSerialization" invocations="55" totalMilliseconds="999" standardDeviationMircosecondsPerInvocation="31192"/>
+      <ClassProfile avgMicrosecondsPerInvocation="13480" maxMicrosecondsPerInvocation="189179" name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" invocations="55" totalMilliseconds="741" standardDeviationMircosecondsPerInvocation="29959"/>
+      <ClassProfile avgMicrosecondsPerInvocation="2560" maxMicrosecondsPerInvocation="19677" name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" invocations="206" totalMilliseconds="527" standardDeviationMircosecondsPerInvocation="4148"/>
+      <ClassProfile avgMicrosecondsPerInvocation="7522" maxMicrosecondsPerInvocation="62684" name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" invocations="62" totalMilliseconds="466" standardDeviationMircosecondsPerInvocation="9348"/>
+      <ClassProfile avgMicrosecondsPerInvocation="7516" maxMicrosecondsPerInvocation="429027" name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" invocations="62" totalMilliseconds="466" standardDeviationMircosecondsPerInvocation="54000"/>
+      <ClassProfile avgMicrosecondsPerInvocation="1057" maxMicrosecondsPerInvocation="14729" name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" invocations="439" totalMilliseconds="464" standardDeviationMircosecondsPerInvocation="2098"/>
+      <ClassProfile avgMicrosecondsPerInvocation="6702" maxMicrosecondsPerInvocation="77404" name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" invocations="65" totalMilliseconds="435" standardDeviationMircosecondsPerInvocation="10521"/>
+      <ClassProfile avgMicrosecondsPerInvocation="948" maxMicrosecondsPerInvocation="17996" name="edu.umd.cs.findbugs.util.TopologicalSort" invocations="428" totalMilliseconds="406" standardDeviationMircosecondsPerInvocation="2248"/>
+      <ClassProfile avgMicrosecondsPerInvocation="7370" maxMicrosecondsPerInvocation="111828" name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" invocations="55" totalMilliseconds="405" standardDeviationMircosecondsPerInvocation="18426"/>
+      <ClassProfile avgMicrosecondsPerInvocation="5952" maxMicrosecondsPerInvocation="19185" name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" invocations="62" totalMilliseconds="369" standardDeviationMircosecondsPerInvocation="5008"/>
+      <ClassProfile avgMicrosecondsPerInvocation="5760" maxMicrosecondsPerInvocation="88699" name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" invocations="63" totalMilliseconds="362" standardDeviationMircosecondsPerInvocation="11362"/>
+      <ClassProfile avgMicrosecondsPerInvocation="5740" maxMicrosecondsPerInvocation="24299" name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" invocations="62" totalMilliseconds="355" standardDeviationMircosecondsPerInvocation="6055"/>
+      <ClassProfile avgMicrosecondsPerInvocation="5853" maxMicrosecondsPerInvocation="50494" name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" invocations="55" totalMilliseconds="321" standardDeviationMircosecondsPerInvocation="11558"/>
+      <ClassProfile avgMicrosecondsPerInvocation="4682" maxMicrosecondsPerInvocation="75546" name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" invocations="62" totalMilliseconds="290" standardDeviationMircosecondsPerInvocation="9967"/>
+      <ClassProfile avgMicrosecondsPerInvocation="4003" maxMicrosecondsPerInvocation="56812" name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" invocations="72" totalMilliseconds="288" standardDeviationMircosecondsPerInvocation="9115"/>
+      <ClassProfile avgMicrosecondsPerInvocation="4825" maxMicrosecondsPerInvocation="94449" name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" invocations="55" totalMilliseconds="265" standardDeviationMircosecondsPerInvocation="13582"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures/>
+  <History/>
+</BugCollection>
