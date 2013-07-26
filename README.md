@@ -101,8 +101,8 @@ Usage: <main class> [options]
        Default: Window
  </pre>
  
- Findbugs XML parser
-================================ 
+Findbugs XML parser
+=====================
 
 A javascript parser that reads the findbugs outputted XML and puts it in a convenient to use
 javascript datastructure. **It is located under html/lib/parse.js**
