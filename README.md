@@ -99,7 +99,7 @@ Usage: <main class> [options]
     -wtitle
        Window title of the template's htmls.
        Default: Window
- </pre>
+</pre>
  
 Findbugs XML parser
 =====================
