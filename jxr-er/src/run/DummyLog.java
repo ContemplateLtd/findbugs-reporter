@@ -17,6 +17,8 @@
  * under the License.
  */
 
+package run;
+
 import org.apache.maven.jxr.log.Log;
 
 /**

@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+package run;
+
 import java.io.File;
 import java.io.IOException;
 import org.apache.maven.jxr.JXR;
@@ -34,39 +36,39 @@ import com.beust.jcommander.JCommander;
 
 public class Runner {
 
-	public static void main(String [] args) throws IOException, JxrException{
-		
-		//Parse
-		ParameterParser jct = new ParameterParser();
-		JCommander jcom = new JCommander(jct, args);
-		
-		//Check if all provided parameters are here.
-		if (jct.help){
-			jcom.usage();
-			System.exit(0);
-		}
-		
-		JXR jxr = new JXR();
-		JXR.showFooter = jct.displayFooter; //Set footer visibility
-		
-		//Set new footer,if one is provided.
-		if (jct.footertext != null){
-			jxr.setFooter(jct.footertext);
-		}
-		
-		//Set jxr parameters
-		jxr.setDest( jct.outputDirectory );
-		jxr.setInputEncoding( jct.ienc );
+    public static void main(String [] args) throws IOException, JxrException{
+        
+        //Parse
+        ParameterParser jct = new ParameterParser();
+        JCommander jcom = new JCommander(jct, args);
+        
+        //Check if all provided parameters are here.
+        if (jct.help){
+            jcom.usage();
+            System.exit(0);
+        }
+        
+        JXR jxr = new JXR();
+        JXR.showFooter = jct.displayFooter; //Set footer visibility
+        
+        //Set new footer,if one is provided.
+        if (jct.footertext != null){
+            jxr.setFooter(jct.footertext);
+        }
+        
+        //Set jxr parameters
+        jxr.setDest( jct.outputDirectory );
+        jxr.setInputEncoding( jct.ienc );
         jxr.setOutputEncoding( "UTF-8" );
         jxr.setLog( new DummyLog() );
-		jxr.xref(jct.sourcepath, jct.templatepath, jct.windowtitle, jct.projectname, jct.bottomtext );
-		
-		//Set up the stylesheet path;
-		if (jct.stylepath == null){
-			jct.stylepath = jct.templatepath + "/stylesheet.css";
-		}
-		//Copy the stylesheet file to the proper location.
-		FileUtils.copyFile(new File(jct.stylepath), new File(jct.outputDirectory + "/stylesheet.css"));
-	}
+        jxr.xref(jct.sourcepath, jct.templatepath, jct.windowtitle, jct.projectname, jct.bottomtext );
+        
+        //Set up the stylesheet path;
+        if (jct.stylepath == null){
+            jct.stylepath = jct.templatepath + "/stylesheet.css";
+        }
+        //Copy the stylesheet file to the proper location.
+        FileUtils.copyFile(new File(jct.stylepath), new File(jct.outputDirectory + "/stylesheet.css"));
+    }
 
 }

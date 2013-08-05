@@ -27,7 +27,7 @@ mvn install
 ```bash
 git clone https://github.com/ContemplateLtd/findbugs-reporter.git
 cd findbugs-reporter/jxr-er
-mvn clean compile assembly:single
+mvn clean package
 ```
 Usage
 --------

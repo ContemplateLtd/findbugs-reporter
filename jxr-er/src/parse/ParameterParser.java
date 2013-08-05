@@ -31,38 +31,38 @@ import com.beust.jcommander.Parameter;
 
 public class ParameterParser {
 
-	  @Parameter(names = { "-help", "--help", "-h" }, help = true, description = "Display help text.")
-	  public boolean help = false;
+    @Parameter(names = { "-help", "--help", "-h" }, help = true, description = "Display help text.")
+    public boolean help = false;
 
-	  @Parameter(names = "-t", description = "Path to templates.")
-	  public String templatepath = "templates";
+    @Parameter(names = "-t", description = "Path to templates.")
+    public String templatepath = "templates";
 
-	  @Parameter(names = "-s", variableArity = true, required = true, description ="Path to the source files.")
-	  public List<String> sourcepath = new ArrayList<String>();;
+    @Parameter(names = "-s", variableArity = true, required = true, description ="Path to the source files.")
+    public List<String> sourcepath = new ArrayList<String>();;
 
-	  @Parameter(names = "-d", required = true, description ="Output directory")
-	  public String outputDirectory;
-	 
-	  @Parameter(names = "-f", description ="Display footer")
-	  public Boolean displayFooter = false;
-	  
-	  @Parameter(names = "-inputencoding", description = "Specify input encoding for the java files.")
-	  public String ienc = "UTF-8";
-	  
-	  @Parameter(names = "-ftext", description ="Text of the footer.")
-	  public String footertext;
-	  
-	  @Parameter(names = "-wtitle", description ="Window title of the template\'s htmls.")
-	  public String windowtitle = "Window";
-	  
-	  @Parameter(names = "-pname", description ="Project name for the template\'s htmls.")
-	  public String projectname = "Project";
-	  
-	  @Parameter(names = "-tbottom", description ="Footer for the template\'s htmls.")
-	  public String bottomtext = "Sample footer.";
-	  
-	  @Parameter(names = "-style", description = "Provide a custom stylesheet. It is strongly " +
-	  		"recommended that if you want to provide a custom stylesheet, you should built upon the default one.")
-	  public String stylepath;
-	  
+    @Parameter(names = "-d", required = true, description ="Output directory")
+    public String outputDirectory;
+     
+    @Parameter(names = "-f", description ="Display footer")
+    public Boolean displayFooter = false;
+    
+    @Parameter(names = "-inputencoding", description = "Specify input encoding for the java files.")
+    public String ienc = "UTF-8";
+    
+    @Parameter(names = "-ftext", description ="Text of the footer.")
+    public String footertext;
+    
+    @Parameter(names = "-wtitle", description ="Window title of the template\'s htmls.")
+    public String windowtitle = "Window";
+    
+    @Parameter(names = "-pname", description ="Project name for the template\'s htmls.")
+    public String projectname = "Project";
+    
+    @Parameter(names = "-tbottom", description ="Footer for the template\'s htmls.")
+    public String bottomtext = "Sample footer.";
+    
+    @Parameter(names = "-style", description = "Provide a custom stylesheet. It is strongly " +
+            "recommended that if you want to provide a custom stylesheet, you should built upon the default one.")
+    public String stylepath;
+    
 }
