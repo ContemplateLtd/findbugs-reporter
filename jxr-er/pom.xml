@@ -55,7 +55,7 @@
     </dependency>
     <dependency>
     	<groupId>com.contemplateltd</groupId>
-    	<artifactId>libJXR</artifactId>
+    	<artifactId>libjxr</artifactId>
     	<version>1.0</version>
     </dependency>
   </dependencies>
