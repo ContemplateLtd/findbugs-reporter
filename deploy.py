@@ -27,14 +27,14 @@ for item in args.classpath:
 destination = os.path.abspath(args.destination[0])
 
 print("Creating files.")
-subprocess.call(["cp -a html " + destination], shell=True)
+subprocess.check_call(["cp -a html " + destination], shell=True)
 
 # Findbugs
 findbugscommand = "findbugs -textui -xml:withMessages -output " + destination +\
                   "/xml/findbugs.xml " + classpath
 print("Creating findbugs report")
 print("Command is " + findbugscommand)
-subprocess.call([findbugscommand], shell=True)
+subprocess.check_call([findbugscommand], shell=True)
 
 # JXR generation
 jxrcommand = "java -jar jxr-er/target/jxr-er-1.0-jar-with-dependencies.jar -d " +\
@@ -43,6 +43,6 @@ jxrcommand = "java -jar jxr-er/target/jxr-er-1.0-jar-with-dependencies.jar -d " 
 print("Creating Java Cross Reference using jxr-er")
 print("Command is " + jxrcommand)
 
-subprocess.call([jxrcommand], shell=True)
+subprocess.check_call([jxrcommand], shell=True)
 
 print("Done! Start a server in order to view the report.")
