@@ -44,7 +44,7 @@ cd findbugs-reporter-1.0
   
   Analize your favourite project!
 ```bash
-./deploy.py -d DESTINATION_FOLDER -s PATH_TO_JAVA_FILES1 PATH_TO_JAVA_FILES2, etc -c PATH_TO_CLASS_FILES1 PATH_TO_CLASS_FILES2, etc
+./deploy.py -d DESTINATION_FOLDER -s PATH_TO_JAVA_FILES1 PATH_TO_JAVA_FILES2, etc -c PATH_TO_CLASS_FILES1 PATH_TO_CLASS_FILES2, etc -p PROJECTNAME
 ```
   
   Start a simple http server in the DESTINATION_FOLDER directory:
