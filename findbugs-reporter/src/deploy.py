@@ -28,6 +28,9 @@ destination = os.path.abspath(args.destination[0])
 
 print("Creating files.")
 subprocess.check_call(["cp -a html " + destination], shell=True)
+subprocess.check_call(["mkdir " + destination + "/jxr"], shell=True)
+subprocess.check_call(["mkdir " + destination + "/xml"], shell=True)
+
 
 # Findbugs
 findbugscommand = "findbugs -textui -xml:withMessages -output " + destination +\
