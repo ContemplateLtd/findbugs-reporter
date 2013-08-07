@@ -26,6 +26,7 @@ mvn install
   
 ```bash
 git clone https://github.com/ContemplateLtd/findbugs-reporter.git
+cd findbugs-reporter
 mvn clean package
 ```
 This produces the following package: *findbugs-reporter/target/findbugs-reporter-1.0-distributable.tar.gz*
