@@ -9,10 +9,10 @@ buster.spec.expose();
 var jsdom = require("jsdom");
 var doc = jsdom.jsdom("<!DOCTYPE html><html/>", jsdom.level(1, "core"));
 window = doc.createWindow();
-$ = require("../html/lib/jquery.js");
+$ = require("../findbugs-reporter/html/lib/jquery.js");
 
 //The parser library.
-parser = require("../html/lib/findbugs_parser.js");
+parser = require("../findbugs-reporter/html/lib/findbugs_parser.js");
 
 //Fetch the xml witout using xmlhttprequest
 var sys = require('util');

@@ -1,0 +1,30 @@
+<assembly>
+  <id>distributable</id>
+  <formats>
+    <format>tar.gz</format>
+  </formats>
+  <files>
+    <file>
+      <source>
+        ../jxr-er/target/jxr-er-1.0-jar-with-dependencies.jar
+      </source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+    <file>
+      <source>
+        src/deploy.py
+      </source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+  </files>
+  <fileSets>
+    <fileSet>
+      <directory>src/html</directory>
+     <outputDirectory>/html</outputDirectory> 
+    </fileSet>
+    <fileSet>
+      <directory>../jxr-er/templates</directory>
+     <outputDirectory>/templates</outputDirectory> 
+    </fileSet>
+  </fileSets>
+</assembly>
