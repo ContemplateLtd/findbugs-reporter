@@ -38,7 +38,7 @@ Usage
 After having built findbugs-reporter, extract the tar archive and cd to the directory:
 ```bash
 tar -xvf findbugs-reporter-1.0-distributable.tar.gz
-cd cd findbugs-reporter-1.0
+cd findbugs-reporter-1.0
 ```
   
   Analize your favourite project!
