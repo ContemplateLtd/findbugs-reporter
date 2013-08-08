@@ -47,16 +47,6 @@ function process_buglocations(buginst) {
         locations.push(meth);
     });
 
-    //Try to get a sourceline if one exists
-    if (buginst.find('SourceLine').attr('start') !== undefined) {
-        src.tag = 'SourceLine';
-        src.line = buginst.find('SourceLine').attr('start');
-        src.classname = buginst.find('SourceLine').attr('classname');
-        //filename
-        src.filen = buginst.find('SourceLine').attr('sourcefile');
-        locations.push(src);
-    }
-
     //Try to get a field if one exists
     if (buginst.find('Field').attr('classname') !== undefined) {
         field.tag = 'field';
