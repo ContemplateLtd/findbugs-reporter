@@ -151,14 +151,14 @@ OUTPUT
 
 The javascript datastructure has the following output:
 <pre>
-                                   .severity - major/minor
-                                   .errortype - ERRORTYPE
-        [by-id][index]             .descr - Longer description than the message
-        [by-cat][category][index]  .msg - the message of the error  
-findings[by-type][ERRORTYPE][index].locations[index].attribute -element of location array
-        [by-sev][severity][index]  .primary() - returns the primary error location.
-                                   .details - detailed description of the error type
-                                   .category - category
+                                     .severity - major/minor
+                                     .errortype - ERRORTYPE
+        [by-id][index]               .descr - Longer description than the message
+        [by-cat][category][index]    .msg - the message of the error  
+findings[by-type][ERRORTYPE][index]  .locations[index].attribute -element of location array
+        [by-sev][severity][index]    .primary() - returns the primary error location.
+        [by-class][classname][index] .details - detailed description of the error type
+                                     .category - category
                                    
 </pre>
 
