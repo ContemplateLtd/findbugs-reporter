@@ -74,7 +74,7 @@ function parse_buginstances(xml, bugpatterns, callback) {
     "use strict";
 
     //Collecotr variable
-    var bugs = [];
+    var n, filenames = [], bugs = [];
 
     //Generate initial containers
     bugs['by-id'] = [];
@@ -86,6 +86,8 @@ function parse_buginstances(xml, bugpatterns, callback) {
 
     bugs['by-cat'] = [];
 
+    bugs['by-class'] = [];
+
     bugs.msgs = bugpatterns; //Various different messages are stored here.
 
     //Iterate over each BugInstance entry
@@ -93,6 +95,8 @@ function parse_buginstances(xml, bugpatterns, callback) {
 
         //Temporary variables for holding onto the data
         var bug = {}, abbrev, category;
+
+        filenames = []; //Clear filenames
 
         bug.primary = function () { //Returns the primary error location
             return this.locations[0];
@@ -150,6 +154,25 @@ function parse_buginstances(xml, bugpatterns, callback) {
 
         bugs['by-cat'][bug.category].push(bugs['by-id'][i]);
 
+        //Code for sorting bugs by class.
+
+        for (n = 0; n < bug.locations.length; n += 1){
+            if (!contains(bug.locations[n].filen, filenames)){
+                if (bug.locations[n].msg === undefined && n !== 0){
+                    //Skip things that should not be highlighted
+                    continue;
+                }
+                filenames.push(bug.locations[n].filen);
+            }
+            if (bugs['by-class'][bug.locations[n].filen] === undefined) {
+                bugs['by-class'][bug.locations[n].filen] = [];
+            }
+        }
+
+        for (n = 0; n < filenames.length; n += 1){
+            bugs['by-class'][filenames[n]].push(bugs['by-id'][i]);
+        }
+
     });
 
     callback(bugs);
@@ -204,6 +227,19 @@ function parse_bugpatterns(xml, callback, buginstances_callback) {
     the parse_buginstances */
     callback(xml, bugpatterns, buginstances_callback);
 
+}
+
+/* A helper function to check if an element is in a list */
+
+function contains(item, arr) {
+    "use strict";
+    var i;
+    for (i = 0; i < arr.length; i += 1) {
+        if (item === arr[i]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 /*Fetches the findbugs xml and forwards it for parsing*/
