@@ -18,36 +18,78 @@ previous_highlight.loc = [];
 var supress_highlighter = false;
 var not_ready_highlighter = true; //Necessarity to avoid calling highlighter before initial load
 
+var global_sorttype; //Holds the sort type of the current tree.
+
+// Used to get browser version.
+var Browser = {
+  Version: function() {
+    var version = 999; // we assume a sane browser
+    if (navigator.appVersion.indexOf("MSIE") != -1)
+      // bah, IE again, lets downgrade version number
+      version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+    return version;
+  }
+};
+
 /*Main function, that calls everything in order to build the web page*/
 
 function init_page(findings){
     "use strict";
+    var urltarget, sorttype;
+    urltarget = document.location.search;
+
+    /*Apply event on window resize to help correct package viewer size.
+    Because the size of the frames in package explorer is calculated as percentage of the parent div
+    element, but the .dummydiv section has a static size, when resizing the browser window, the frame's size
+    need to be recalculated. This causes a lot of CPU usage, but fortunately no user should be constantly 
+    resizing their window...*/
+    $(window).resize(function() {
+        //If we have switched to package frame
+        if ($('.package_explorer').is(":visible")){
+            resizePackageFrames();
+        }
+    });
 
     //Produces a short summary of the xml file in the bottom left corner.
     produce_summary(findings);
 
-    display_all(findings, 'by-type');
-
-    //Load frame buttons here
-    /*Because we are cannot be certain if the frame is going to laod before
-    or after the this function is executed we cannot use $.load, unless we
-    begin loading the frame exactly here.*/
-
-    $('.classFrame').attr("src", 'intro.html');
-        $('.classFrame').load(function () {
-        loadframebuttons(findings);
-        not_ready_highlighter = false;
-    });
-
+    //Code for opening a specific node.
+    if (urltarget !== ""){
+        sorttype = urltarget.replace(/\?/g,'').split('/')[0];
+        //Check if sort type is valid
+        if (['by-type','by-class','by-cat','by-sev'].indexOf(sorttype) !== -1){
+            display_all(findings, sorttype, true);
+            //If we want to open a specific node, we need to be able to load the specific tree
+        } else {
+            display_all(findings, 'by-type', false);
+        }
+    } else {
+        display_all(findings, 'by-type');
+    }
 }
 
-function display_all(findings, sorttype) {
+function display_all(findings, sorttype, follow_target) {
     "use strict";
-    var prop, navigationtext, selector, listframeheight, frameurl;
+    var prop, navigationtext, selector, frameurl, urltarget, parsed, groupby;
+
+    //Set sorttype in a global variable so that we have access to it.
+    //Hacky but...
+    global_sorttype = sorttype;
+
+    urltarget = document.location.search; //For opening a distinct node
 
     problems = findings; //For easy debugging, should be gone from the final version
 
-    document.body.style.display = 'none'; //Hide the document to minimise reflows.
+    //If we are not on the intro page, load it
+    frameurl = document.getElementById("classFrame").contentWindow.location.href.split('\/');
+    if (frameurl[frameurl.length - 1] !== 'intro.html'){
+        $('.classFrame').attr("src", 'intro.html');
+        $('.classFrame').load(function () {
+            loadgroupbuttons(findings);
+        });
+    }
+
+    $('.findings').hide(); //Hide the findings to minimise reflows;
 
     /*Draw the list in the findings div so that it can later be used by jstree
     to construct a tree */
@@ -62,10 +104,23 @@ function display_all(findings, sorttype) {
     /*Function to be executed after jstree is loaded*/
     $('.findings').bind('loaded.jstree', function (e, data) {
         stripeit('.findings'); //Adds stripes to the table for readability
+        /*Timeout 0 will put the closure inside of setTimeout at the end of the internal
+        call queue, ensuring that the drawing has been completed.*/
+        setTimeout(function (){
+            fixWidthOuter(); //Fix widths
+        }, 0);
 
+        //Add sort by button.
+        groupby = '<div class="groupby"><b>Group by:</b> <select class="selector"><option class="by-type" value="by-type">Type</option>' +
+            '<option class="by-cat" value="by-cat">Category</option><option class="by-sev" value="by-sev">Severity</option>' +
+            '<option class="by-class" value="by-class">Class</option></select></div>';
+
+        $('.findings').prepend(groupby);
+        $('.' + global_sorttype).attr('selected', 'selected'); //Change the selected button.
         /*Add a go to start button that restores the initial layout of the page*/
-        navigationtext = '<span class=home_button><a>Go to start</a></span>' +
-        '<span class=package_view><a>Package explorer</a></span>';
+        navigationtext = '<div class=dummydiv><span class=home_button><a>Go to start</a></span>' +
+        '<span class=package_view><a>Packages</a></span>' +
+        '<span class=finding_view><a>Findings</a></span></div>';
         $('.findings').prepend(navigationtext);
         $('.home_button').bind('click', function () {
             //If we are not on the intro page, load it
@@ -73,7 +128,9 @@ function display_all(findings, sorttype) {
             if (frameurl[frameurl.length - 1] !== 'intro.html'){
                 $('.classFrame').attr("src", 'intro.html');
                 $('.classFrame').load(function () {
-                    loadframebuttons(findings);
+                    loadgroupbuttons(findings);
+                    //Remove loading button
+                    $('.loading', window.parent.frames[0].document).css("display", "none");
                 });
             }
 
@@ -83,32 +140,41 @@ function display_all(findings, sorttype) {
             jQuery.jstree._reference('.findings').close_all();
         });
         //Make the home button and the go to package_view/findings button work in package_view
+        $('.package_view').addClass('inactive'); //Grey out the button.
+        $('.finding_view').removeClass('inactive'); //Don't grey out package view.
         $('.package_view').bind('click', function() {
+            $('.package_view').removeClass('inactive');
+            $('.finding_view').addClass('inactive');
             $('.findings').hide();
             selector = $('.package_explorer');
             selector.show();
             if (selector.find('.dummydiv').length === 0){
                 //Recalculate heights
-                selector.prepend('<div class="dummydiv">'+navigationtext+'</div>'); //Dummy div in order to calculate height properly
-                listframeheight = (selector.height()/3 - selector.find('.dummydiv').height())*100/selector.height();
-                $('.packageListFrame').height(String(listframeheight) + '%');
-                $('.packageFrame').height(String((selector.height() - $('.dummydiv').height() -
-                    $('.packageListFrame').height() -1)*100/$('.package_explorer').height()) + '%');
-                selector.find('.package_view').find('a').text('Findings explorer');
-                selector.find('.package_view').bind('click', function(){
+                selector.prepend(navigationtext);
+                $('.package_view').removeClass('inactive');
+                $('.finding_view').addClass('inactive');
+                selector.find('.finding_view').bind('click', function(){
                     selector.hide();
                     $('.findings').show();
+                    $('.package_view').addClass('inactive');
+                    $('.finding_view').removeClass('inactive');
                 });
                 selector.find('.home_button').bind('click', function () {
+                    //Switch to findings view.
+                    selector.hide();
+                    $('.findings').show();
+
                     //If we are not on the intro page, load it
                     frameurl = document.getElementById("classFrame").contentWindow.location.href.split('\/');
                     if (frameurl[frameurl.length - 1] !== 'intro.html'){
                         $('.classFrame').attr("src", 'intro.html');
                         $('.classFrame').load(function () {
-                            loadframebuttons(findings);
+                            loadgroupbuttons(findings);
+                            //Remove loading button
+                            $('.loading', window.parent.frames[0].document).css("display", "none");
                         });
                     }
-
+                    //Restore default states
                     $('.packageFrame').attr('src', 'jxr/allclasses-frame.html');
                     $('.details').empty();
                     produce_summary(findings);
@@ -117,18 +183,33 @@ function display_all(findings, sorttype) {
                         selector.hide();
                         $('.findings').show();
                     });
-                    //$('.package_view').hide();
-                    //$('.findings').show();
                 });
             }
+            resizePackageFrames();
         });
 
-        document.body.style.display = 'block'; //Show the document once everything is done.
+        $('.findings').show(); //Show the findings.
         //Fixes the package_view switch button from dieing out.
-        $('.package_explorer').find('.package_view').bind('click', function(){
+        $('.package_explorer').find('.finding_view').bind('click', function(){
             $('.package_explorer').hide();
             $('.findings').show();
         });
+
+        //Load Frame buttons for grouping
+        loadgroupbuttons(findings);
+        not_ready_highlighter = false;
+        //Remove loading button
+        $('.loading', window.parent.frames[0].document).css("display", "none");
+
+        //Open a specific node, only if called with follow_target, otherwise group by breaks.
+        if (urltarget !== "" && follow_target){
+            //Formatd of url target should be url/?sorttype/class/id
+            parsed = urltarget.replace('?','').split('/');
+            $('.' + parsed[1]).find('a')[1 + Number(parsed[2])].click();
+            /* The way this works is: finds all the a tags under a root branch on the tree.
+            the first atag is the one that expands the root node, any consequent atag is the nth
+            node. By clicking the nth node, we directly expand the tree and open whatever node we want.*/
+        }
     });
 
     /*Set the themes path, which does not work otherwise. We are using heavily
@@ -146,6 +227,12 @@ function display_all(findings, sorttype) {
         //Code for opening and closing nodes on click.
         }).bind("open_node.jstree close_node.jstree", function (e) {
                     stripeit('.findings');
+        }).bind("open_node.jstree", function(event, data){
+            /*Timeout 0 will put the closure inside of setTimeout at the end of the internal
+            call queue, ensuring that the drawing has been completed.*/
+            setTimeout(function (){
+                fixWidthInner(data.rslt.obj.attr("class"));
+            }, 0);
         }).delegate(".jstree-open>a", "click.jstree", function (event) {
             $.jstree._reference(this).close_node(this, false, false);
         }).delegate(".jstree-closed>a", "click.jstree", function (event) {
@@ -230,9 +317,12 @@ function divpopulation(finding, prop, i) {
         }
 
         //Highlight the locations in the code iframe
-        if ($('.classFrame').attr('src').split('#')[0] === url.split('#')[0]) { /*If we are in the same file already
+        if ($('.classFrame').attr('src').split('#')[0] === url.split('#')[0] &&
+            document.getElementById("classFrame").contentWindow.location.href.indexOf(
+                $('.classFrame').attr('src')) !== -1) { /*If we are in the same file already
             we don't need for the frame to load, and that is why we have 2 separate cases here, otherwise
-            load never finishes */
+            load never finishes  The second condition is necessary because sometimes the frame is loaded with
+            a new file without modifying the src attribute.*/
             $('.classFrame').attr("src", url);
             highlight_clear(previous_highlight.loc); // Clear highlights
             previous_highlight.loc = finding.locations; //Update locations
@@ -273,6 +363,8 @@ function divpopulation(finding, prop, i) {
     });
 }
 
+/*Function that populates the bottom left div (.details) */
+
 function displaylocations(finding) {
     "use strict";
 
@@ -304,11 +396,6 @@ function displaylocations(finding) {
     generic_descr = '<p class="generic_detail"><b>' + finding.descr + '</b> ' +
         '<img class=learn_more src="ico/question.gif" title="Learn more"/></p>';
 
-    /*The generic detail that appears on the bottom of the .details div*/
-    generic_detail = '<p class="generic_detail"><b>Category:</b> ' +
-        finding.category + '<br/><b>Severity:</b> ' + ico + capitalize(finding.severity) +
-            '<br/><b>Type:</b> ' + finding.errortype + '</p>';
-
     specific_detail = '<p class="specific_detail">' + finding.msg +'</p>';
 
     //Append to the DOM the 
@@ -316,12 +403,12 @@ function displaylocations(finding) {
 
     //Give an option to display guards if guards are present
     if (finding.guards !== undefined && finding.guards.length !== 0){
-        $('.details > .specific_detail').append('</br><span class="guardview">Show guards</span>');
+        $('.details > .specific_detail').append('</br><span class="guardview hidden"><img src=ico/guard.gif />Guards</span>');
         $('.details > .specific_detail > .guardview').bind('click', function() {
-            if ($(this).text() === "Show guards") {
+            if ($(this).hasClass('hidden') === true) {
                 $('.more_info').show();
                 $('.more_info').css('height', '30%'); //Restore height
-                $(this).text('Hide guards');
+                $(this).removeClass('hidden');
                 //Reset learn more.
                 $('.details > .generic_detail > .learn_more').attr('title', 'Learn more');
                 $('.classFrame').css('height', '70%');
@@ -343,14 +430,14 @@ function displaylocations(finding) {
                 //Add a close button inside the div
                 $('.close_button', '.more_info').bind('click', function(){
                     $('.details > .generic_detail > .learn_more').attr('title', 'Learn more');
-                    $('.details > .specific_detail > .guardview').text('Show guards');
+                    $('.details > .specific_detail > .guardview').addClass('hidden');
                     $('.more_info').hide();
                     $('.classFrame').css('height', '100%');
                     $('.classFrame').css('border', 'none');
                 });
             } else {
                 $('.more_info').hide();
-                $(this).text('Show guards');
+                $(this).addClass('hidden');
                 //Reset learn more, just in case
                 $('.details > .generic_detail > .learn_more').attr('title', 'Learn more');
                 $('.classFrame').css('height', '100%');
@@ -369,7 +456,7 @@ function displaylocations(finding) {
             $('.more_info').css('height', '30%'); //Restore height
             $(this).attr('title', 'Hide');
             //Reset guards.
-            $('.details > .specific_detail > .guardview').text('Show guards');
+            $('.details > .specific_detail > .guardview').addClass('hidden');
             $('.classFrame').css('height', '70%');
             /*Restore the border now that it is no longer minimised*/
             $('.classFrame').css('border-bottom', '1px solid');
@@ -377,7 +464,7 @@ function displaylocations(finding) {
             //Add a close button inside the div
             $('.close_button', '.more_info').bind('click', function(){
                 $('.details > .generic_detail > .learn_more').attr('title', 'Learn more');
-                $('.details > .specific_detail > .guardview').text('Show guards');
+                $('.details > .specific_detail > .guardview').addClass('hidden');
                 $('.more_info').hide();
                 $('.classFrame').css('height', '100%');
                 $('.classFrame').css('border', 'none');
@@ -385,7 +472,7 @@ function displaylocations(finding) {
         } else {
             $('.more_info').hide();
             $(this).attr('title', 'Learn more');
-            $('.details > .specific_detail > .guardview').text('Show guards');
+            $('.details > .specific_detail > .guardview').addClass('hidden');
             $('.classFrame').css('height', '100%');
             $('.classFrame').css('border', 'none'); //Otherwise width is not drawn correctly
 
@@ -403,10 +490,28 @@ function displaylocations(finding) {
         }
     }
 
-    //Append the generic details after the table is drawn.
-    $('.details').append(generic_detail);
+    /*The generic detail that appears on the bottom of the .details div*
+    Append AFTER the table is drawn and all JS has finished executing*/
+    setTimeout(function () {
+        generic_detail = '<p class="generic_detail"><b>Category:</b> ' +
+            finding.category + '<br/><b>Severity:</b> ' + ico + capitalize(finding.severity) +
+                '<br/><b>Type:</b> ' + finding.errortype + '<br/><b class="width" >DirectLink:</b> <input type=text '+
+                'readonly="readonly" value="' + newUrl(getDirectLink()) + '" class="linkcopy"></p>';
+        $('.details').append(generic_detail);
+        //A bit hacky way to make the width consistent across window sizes
+        $('.linkcopy').width($('.details').width() - $('.width').width() - 30);
+        //Select all text on click.
+        $('.linkcopy').click(function () {
+            $(this).select();
+        });
+        //If we are on IE 10 or above, or any sane browser, use html 5 history api to change url
+        if (Browser.Version() >= 10){
+            window.history.pushState("string", finding.msg, newUrl(getDirectLink()));
+        }
+    }, 0);
 }
 
+/*Draws a single line of the table containing the line numbers associated with each location*/
 
 function drawlinetable(location, locations, prev_classname) {
     "use strict";
@@ -577,7 +682,7 @@ function highlight_all(locations, classname) {
     }
 }
 
-/*Clears all highlights*/
+/*Clears all highlights and also on hover title*/
 function highlight_clear(locations) {
     "use strict";
     var i, selector;
@@ -698,34 +803,23 @@ function count_map_el(array_map) {
     return counter;
 }
 
-/*Loads the frame buttons that produce different trees */
+/*Loads the group by buttons that produce different trees */
 
-function loadframebuttons(findings){
+function loadgroupbuttons(findings){
 
-    $('.sev', window.parent.frames[0].document).bind('click', function () {
-        jQuery.jstree._reference('.findings').destroy(); //Destroy the jstree
-        $('.findings').empty(); //Clear the DOM
-        display_all(findings, 'by-sev');
-        $('.package_explorer').find('.package_view').bind('click', function(){
+    $('.selector').change(function () {
+        //Show loading text
+        $('.loading', window.parent.frames[0].document).css("display", "block");
+        /*Switch to findings view*/
+        if ($('.package_explorer').is(":visible")){
             $('.package_explorer').hide();
-            $('.findings').show();
-        });
-    });
-    $('.cat', window.parent.frames[0].document).bind('click', function () {
+        }
+        $('.findings').hide();
         jQuery.jstree._reference('.findings').destroy(); //Destroy the jstree
         $('.findings').empty(); //Clear the DOM
-        display_all(findings, 'by-cat');
+        display_all(findings, $(this).prop('value'));
     });
-    $('.type', window.parent.frames[0].document).bind('click', function () {
-        jQuery.jstree._reference('.findings').destroy(); //Destroy the jstree
-        $('.findings').empty(); //Clear the DOM
-        display_all(findings, 'by-type');
-    });
-    $('.class', window.parent.frames[0].document).bind('click', function () {
-        jQuery.jstree._reference('.findings').destroy(); //Destroy the jstree
-        $('.findings').empty(); //Clear the DOM
-        display_all(findings, 'by-class');
-    });
+
 }
 
 /* Allows the error description to pop out when the cursor is over
@@ -942,7 +1036,6 @@ function filehighlight(fileurl, findings){
     }
     if (locations.length === 0) {
         highlight_clear(previous_highlight.loc); //Clear previous highlight even in files without problems
-        console.log("No findings in this file " + fileurl + ", highlights cleared.");
         //Since highlights are cleared, we shouldn't keep a record of highlights
         previous_highlight.loc = [];
         previous_highlight.classname = "";
@@ -951,7 +1044,6 @@ function filehighlight(fileurl, findings){
 
     classname = locations[0].classname; //Hack to get the necessary classname for the functions
 
-    //setTimeout(function () { //Hack to get some sort of functionality
     highlight_clear(previous_highlight.loc); // Clear previous highlights
 
     //Highlight everything in the new file
@@ -962,10 +1054,11 @@ function filehighlight(fileurl, findings){
 
     //Do the hovering
     hover_all(locations, classname);
-//}, 3000);
    });
 }
 
+//A function to highlight a file in the code frame, when that file has been loaded from
+// the package explorer or by following links from the code frame.
 function highlighter(){
     "use strict";
 
@@ -974,15 +1067,185 @@ function highlighter(){
     if (supress_highlighter || not_ready_highlighter){
         //Do not fire, only change the supressor
         supress_highlighter = false;
-        console.log("Triggered and supressed.");
     } else {
         url = document.getElementById("classFrame").contentWindow.location.href;
         filehighlight(url,problems);
-        console.log("Triggered and for the url: " + url);
     }
 }
 
-/*$('.classFrame').bind('load', function() {
-    console.log("Triggered");
-    highlighter();
-});*/
+/*Functions to apply font size to the package explorer frames*/
+
+function applyfont1(){
+    $('body', window.parent.frames[1].document).css('font-size', '0.9em');
+}
+
+function applyfont2(){
+    $('body', window.parent.frames[2].document).css('font-size', '0.9em');
+}
+
+/*Function to correctly apply size to the package explorer*/
+function resizePackageFrames(){
+    var listframeheight, selector, dummyheight;
+    selector = $('.package_explorer');
+
+    dummyheight = selector.find('.dummydiv').height()*100/selector.height();
+    listframeheight = (selector.height()/3 - selector.find('.dummydiv').height())*100/selector.height();
+    $('.packageListFrame').height(String(listframeheight) + '%');
+    //Leave all the rest for the packageFrame
+    $('.packageFrame').height(String(100 - listframeheight - dummyheight -1) + '%');
+}
+
+/*This function finds nodes that contain words that are too big to be displayed properly.
+To be used on inner tree nodes only*/
+
+function fixWidthInner(nodeclass){
+    "use strict";
+    var aselector, targetwidth;
+    $('.' + nodeclass.split(' ')[0]).find('li').each(function (){
+        aselector = $(this).find('a').first();
+        targetwidth = $(this).width();
+        if (targetwidth < (aselector.width() + 38)){
+            fixWidth(aselector, targetwidth);
+        }
+    });
+}
+
+/*Same as the above, except loops over all outer nodes and runs when the tree is laoded*/
+
+function fixWidthOuter(){
+    "use strict";
+    var aselector, targetwidth;
+
+    $('.jstree-no-dots').children().each(function (){
+        aselector = $(this).find('a').first();
+        targetwidth = $(this).width();
+        if (targetwidth < (aselector.width() + 38)){
+            fixWidth(aselector, targetwidth);
+        }
+    });
+}
+
+/*Makes the width of the aselector to be <= than the targetwidth*/
+function fixWidth(aselector, targetwidth){
+    "use strict";
+
+    var i, ins_tag, img_tag, str_arr, new_str_arr = [], split_word_arr, failed = true, longest_idx, longest = "";
+    /*The logic is the following:
+        Find the longest word.
+        Split it on InnerCapitaLetters (Inner Capital Letters) and
+        Inner dots in the filename (if such a present).
+        If none are present, split in the middle
+        If the width is still not small enough, recurr*/
+    //Save ins and img
+    ins_tag = aselector.find('ins');
+    img_tag = aselector.find('img');
+
+    str_arr = aselector.text().split(' ');
+
+    //Get the longest word
+    for (i = 0; i < str_arr.length; i += 1){
+        if (longest.length < str_arr[i].length){
+            longest = str_arr[i];
+            longest_idx = i;
+        }
+    }
+
+    //Try to split it on InnerCapitalLetters
+    split_word_arr = longest.replace(/(.(?=[A-Z]))/g,'$1,').split(',');
+    
+    //Check if we failed to reduce the word size
+    if (split_word_arr[0] !== longest){
+        failed = false;
+    }
+
+    //If we failed to reduce word size, split on dots in the name
+    if (failed){
+        split_word_arr = longest.replace(/\./g,',.').split(',');
+        //Check if we failed to reduce the word size
+        if (split_word_arr[0] !== longest){
+            failed = false;
+        }
+    }
+
+    //If we failed to reduce word size, split on underscore
+    if (failed){
+        split_word_arr = longest.replace(/\_/g,'_,').split(',');
+        //Check if we failed to reduce the word size
+        if (split_word_arr[0] !== longest){
+            failed = false;
+        }
+    }
+
+    //As a final effort split the longest word in half
+    if (failed){
+        split_word_arr = [];
+        split_word_arr[0] = longest.slice(0, Math.ceil(longest.length/2));
+        split_word_arr[1] = longest.slice(Math.ceil(longest.length/2));
+    }
+
+    //Reconstruct the string
+    for (i = 0; i< str_arr.length; i += 1){
+        if (i !== longest_idx){
+            new_str_arr.push(str_arr[i]);
+        } else {
+            new_str_arr = new_str_arr.concat(split_word_arr);
+        }
+    }
+
+    //Change the text of the atag (and remove extra initial whitespace)
+    aselector.text(new_str_arr.join(' ').slice(1));
+
+    //Restore html
+    aselector.prepend(img_tag);
+    aselector.prepend(ins_tag);
+
+    /*Check if we need to do another pass. Not feasible because we have to wait for the
+    redraw to take effect
+    if (aselector.width() >= targetwidth){
+        fixWidth(aselector, targetwidth);
+    }*/
+
+}
+
+/*Gets the direct access link of the currently selected finding.*/
+
+function getDirectLink(){
+    "use strict";
+    var node, sorttype, sortclass, id;
+    //Get all info about the currently clicked node.
+    node = $('.jstree-clicked');
+    id = node.parent().attr('class').split(' ')[0].slice(2);
+    sortclass = node.parent().parent().parent().attr('class').split(' ')[0];
+    sorttype = global_sorttype;
+
+    return (sorttype + '/' + sortclass + '/' + id);
+
+}
+
+/* Constructs a new url to push to history. */
+
+function newUrl(directLink){
+    "use strict";
+    var str_arr, last_letter;
+
+    str_arr = window.location.href.split('?'); // Split on search
+
+    //Preprocess the string to workaround some buggy http servers
+    if (str_arr.length > 1){
+        //Remove trailing slash if such is present.
+        if (str_arr[str_arr.length -1][str_arr[str_arr.length -1].length -1] === '/'){
+            str_arr[str_arr.length -1] = str_arr[str_arr.length -1].slice(0, str_arr[str_arr.length -1][str_arr[str_arr.length -1].length -1] -1);
+        }
+        last_letter = str_arr[str_arr.length -1][str_arr[str_arr.length -1].length -1];
+    }
+
+    //If we have a ? in the current URL and the ? part ends in a number (to check if it is our url or someone else)
+    if (str_arr.length > 1 && !isNaN(last_letter)){
+        str_arr[str_arr.length -1] = directLink; //Update the direct link part.
+    } else { //Else if we have a / at the end of the url
+        str_arr.push(directLink);
+    }
+
+    return str_arr.join('?');
+    
+}

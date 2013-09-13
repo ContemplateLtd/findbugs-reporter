@@ -34,7 +34,7 @@
     padding-left: 36px !important;
 }
 
-.code
+.classFrame
 {
     position: absolute;
     top: 0;
@@ -103,12 +103,18 @@
     max-width: 1em;
     display: block;
     text-align: left;
+    margin-top: 1em;
 }
 
 .generic_detail
 {
     font-size: small;
     color:black;
+}
+
+.specific_detail
+{
+    margin-bottom: 0;
 }
 
 h3 {
@@ -134,7 +140,7 @@ table {
     margin-bottom: 1em;
 }
 
-img
+.findings img
  {
  vertical-align: middle; /*Allign image with text*/
  }
@@ -144,6 +150,43 @@ img
     font-size: smaller;
     cursor: hand; /* Make hand cursor on clickable stuff */
     cursor: pointer;
+    width: 1em;
+    height: 1em;
+}
+
+.guardview
+{
+    font-size: smaller;
+    cursor: hand; /* Make hand cursor on clickable stuff */
+    cursor: pointer;
+    color: blue;
+}
+
+/*Colors for the guards view*/
+.Not
+{
+    color: red;
+}
+
+.Always
+{
+    color: green;
+}
+
+.Maybe
+{
+    color: purple;
+}
+
+/*Accesses table */
+
+.accesses td
+{
+    padding-bottom: 0.15em;
+    padding-top: 0.15em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    white-space:nowrap;
 }
 
 #black_link
@@ -178,4 +221,124 @@ a, a:visited, a:hover, a:active {
 .home_button {
     font-size: small;
     font-weight: 700; /*bold*/
+}
+
+.close_button {
+    width: 1em;
+    height: 1em;
+    display: block;
+    float: right;
+    margin-left: 0.1em;
+    cursor: hand; /* Make hand cursor on clickable stuff */
+    cursor: pointer;
+}
+
+.guard_descr {
+    margin-bottom: 0;
+}
+
+.package_explorer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 70%;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-right-color: #CACDC5;
+    border-bottom-color: #CACDC5;
+    display: none; /*Hide by default*/
+}
+
+.package_view {
+    font-size: small;
+    font-weight: 700; /*bold*/
+    float: right;
+}
+
+.finding_view {
+    font-size: small;
+    font-weight: 700; /*bold*/
+    float: right;
+}
+
+.package_view a { /*Overwrite the findings a padding/margin workaround*/
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    display: block !important;
+    text-indent: 0 !important;
+}
+
+.finding_view a { /*Overwrite the findings a padding/margin workaround*/
+    margin-right: 0 !important;
+    padding-right: 0.5em !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    display: block !important;
+    text-indent: 0 !important;
+}
+
+.inactive a {
+    color: grey !important;/*Grey colour for active tabs*/
+}
+
+.inactive a:hover {
+    color: black !important;/*Grey colour for active tabs*/
+}
+
+.packageListFrame{
+    top: 0;
+    left: 0;
+    height: 30%;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid;
+    border-bottom-color: #CACDC5;
+}
+
+.packageListFrame body {
+    font-size: 0.9em;
+}
+
+.packageFrame{
+    top: 30%;
+    left: 0;
+    height: 70%;
+    width: 100%;
+    border: 0;
+}
+
+.packageFrame body {
+    font-size: 0.9em;
+}
+
+.dummydiv a {
+    color: black;
+}
+
+.groupby {
+    font-size: 0.9em;
+}
+
+.linkcopy {
+    align-content: stretch;
+    align-items: stretch;
+    align-self: stretch;
+    border-collapse: separate;
+    box-sizing: border-box;
+    color: #333333;
+    flex: 0 1 auto;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-flow: row;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+    justfy-content: flex-start;
+    order: 0;
+    resize: none;
+    overflow: none;
+    white-space: nowrap;
 }
